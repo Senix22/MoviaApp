@@ -1,55 +1,62 @@
 package com.example.moviaapp.data.movie
 
-import android.util.Log
+import com.example.moviaapp.common.asMovie
 import com.example.moviaapp.data.MovieEntity
-import com.example.moviaapp.data.NewsResult
-import com.example.moviaapp.data.UsualNewsResult
+import com.example.moviaapp.data.MovieResult
+
+import com.example.moviaapp.data.UsualMovieResult
 import com.example.moviaapp.data.api.MovieResponse
 import com.example.moviaapp.network.NetworkResponse
 import javax.inject.Inject
 
 class MovieResponseMapper @Inject constructor() {
 
-    fun mapMovieResponse(resultResponse: NetworkResponse<MovieResponse, Any>): UsualNewsResult {
-        Log.d("Movie", "getMovie: asdonse.body}")
+    fun mapMovieResponse(resultResponse: NetworkResponse<MovieResponse, Any>): UsualMovieResult {
         return when (resultResponse) {
             is NetworkResponse.Success -> {
-                Log.d("Movie", "getMovie: ${resultResponse.body}")
                 with(resultResponse.body) {
-
-                    NewsResult.Success(
+                    MovieResult.Success(
                         page = page,
                         pages = pages,
-                        result = movies?.mapNotNull {
-                            MovieEntity(
-                                title = it.title ?: return@mapNotNull null,
-                                id = it.id ?: return@mapNotNull null,
-                                overview = it.overview ?: return@mapNotNull null,
-                                posterPath = it.posterPath ?: return@mapNotNull null,
-                                backdropPath = it.backdropPath ?: return@mapNotNull null,
-                                rating = it.rating ?: return@mapNotNull null,
-                                releaseDate = it.releaseDate ?: return@mapNotNull null
-                            )
+                        result = movies?.map {
+                            it.asMovie()
                         }
+
                     )
-
                 }
-
             }
-            is NetworkResponse.NetworkError -> NewsResult.Failure(
+
+            is NetworkResponse.NetworkError -> MovieResult.Failure(
                 resultResponse.error.message.orEmpty(),
                 null
             )
+
             is NetworkResponse.ApiError -> (
-                    NewsResult.Failure(
+                    MovieResult.Failure(
                         resultResponse.body.toString(),
                         resultResponse.code
                     )
                     )
-            is NetworkResponse.UnknownError -> (NewsResult.Failure(
+
+            is NetworkResponse.UnknownError -> (MovieResult.Failure(
                 resultResponse.error.message.orEmpty(),
                 null
             ))
+        }
+    }
+
+    fun mapSearchResponse(resultResponse: NetworkResponse<MovieResponse, Any>): List<MovieEntity> {
+        return when (resultResponse) {
+
+            is NetworkResponse.Success -> {
+                resultResponse.body.movies?.map {
+                    it.asMovie()
+                } ?: emptyList()
+            }
+
+            else -> {
+                emptyList<MovieEntity>()
+            }
         }
     }
 }

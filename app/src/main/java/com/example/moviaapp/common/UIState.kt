@@ -1,4 +1,4 @@
-package com.example.moviaapp.ui
+package com.example.moviaapp.common
 
 sealed class State<out T, out E> {
     data class Content<T>(val data: T) : State<T, Nothing>()

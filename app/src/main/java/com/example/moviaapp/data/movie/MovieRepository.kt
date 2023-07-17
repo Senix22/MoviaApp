@@ -1,25 +1,36 @@
 package com.example.moviaapp.data.movie
 
-import com.example.moviaapp.data.UsualNewsResult
+import com.example.moviaapp.data.MovieEntity
+import com.example.moviaapp.data.UsualMovieResult
 import com.example.moviaapp.data.api.MovieApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
 class MovieRepository @Inject constructor(
-    private val newsApi: MovieApi,
-    private val newsMapper: MovieResponseMapper
+    private val moviesApi: MovieApi,
+    private val moviesMapper: MovieResponseMapper
 ) {
     suspend fun requestNews(
         page: Int? = null
-    ): UsualNewsResult =
+    ): UsualMovieResult =
+        moviesMapper.mapMovieResponse(
+            moviesApi.getMovieList(
+                page = page,
+            )
+        )
 
-            newsMapper.mapMovieResponse(
-                newsApi.getMovieList(
-                    page = page,
+    suspend fun searchMovie(
+        movie: String,
+    ): Flow<List<MovieEntity>> =
+        flow {
+            emit(
+                moviesMapper.mapSearchResponse(
+                    moviesApi.searchMovie(
+                        query = movie,
+                    )
                 )
             )
-
+        }
 
 }

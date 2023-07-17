@@ -2,9 +2,7 @@ package com.example.moviaapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.add
-import androidx.fragment.app.commit
-import com.example.moviaapp.ui.MovieFragment
+import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -14,9 +12,7 @@ class MovieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.acitivity_main)
 
-        supportFragmentManager.commit {
-            setReorderingAllowed(true)
-            add<MovieFragment>(R.id.fragment_container_view)
-        }
     }
+
+    override fun onSupportNavigateUp() = findNavController(R.id.my_nav_host_fragment).navigateUp()
 }

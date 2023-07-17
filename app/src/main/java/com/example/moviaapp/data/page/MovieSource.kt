@@ -5,7 +5,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.moviaapp.common.Taggable
 import com.example.moviaapp.data.MovieEntity
-import com.example.moviaapp.data.NewsResult
+import com.example.moviaapp.data.MovieResult
 import com.example.moviaapp.data.movie.MovieRepository
 import javax.inject.Inject
 
@@ -21,14 +21,14 @@ class MovieSource @Inject constructor(
             val nextPage = params.key ?: 1
             val movieResult = movieRepository.requestNews(nextPage)
 
-            if (movieResult is NewsResult.Success) {
+            if (movieResult is MovieResult.Success) {
                 LoadResult.Page(
                     data = movieResult.result ?: emptyList(),
                     prevKey = if (nextPage == 1) null else nextPage - 1,
                     nextKey = nextPage.plus(1),
                 )
             } else {
-                LoadResult.Error(IllegalStateException((movieResult as NewsResult.Failure).errorText))
+                LoadResult.Error(IllegalStateException((movieResult as MovieResult.Failure).errorText))
             }
         } catch (e: Exception) {
             Log.e(tag, e.message, e)

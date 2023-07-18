@@ -19,7 +19,7 @@ class MovieSource @Inject constructor(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieEntity> {
         return try {
             val nextPage = params.key ?: 1
-            val movieResult = movieRepository.requestNews(nextPage)
+            val movieResult = movieRepository.requestMovies(nextPage)
 
             if (movieResult is MovieResult.Success) {
                 LoadResult.Page(

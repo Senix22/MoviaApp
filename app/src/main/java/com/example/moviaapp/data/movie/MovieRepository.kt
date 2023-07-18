@@ -11,7 +11,7 @@ class MovieRepository @Inject constructor(
     private val moviesApi: MovieApi,
     private val moviesMapper: MovieResponseMapper
 ) {
-    suspend fun requestNews(
+    suspend fun requestMovies(
         page: Int? = null
     ): UsualMovieResult =
         moviesMapper.mapMovieResponse(

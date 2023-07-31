@@ -18,14 +18,14 @@ class MovieSource @Inject constructor(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieEntity> {
         return try {
-            val nextPage = params.key ?: 1
+            val nextPage = params.key ?: INITIAL_REFRESH_KEY
             val movieResult = movieRepository.requestMovies(nextPage)
 
             if (movieResult is MovieResult.Success) {
                 LoadResult.Page(
                     data = movieResult.result ?: emptyList(),
-                    prevKey = if (nextPage == 1) null else nextPage - 1,
-                    nextKey = nextPage.plus(1),
+                    prevKey = if (nextPage == INITIAL_REFRESH_KEY) null else nextPage - NEXT_PAGE,
+                    nextKey = nextPage.plus(NEXT_PAGE),
                 )
             } else {
                 LoadResult.Error(IllegalStateException((movieResult as MovieResult.Failure).errorText))
@@ -40,6 +40,7 @@ class MovieSource @Inject constructor(
 
     private companion object {
         const val INITIAL_REFRESH_KEY = 1
+        const val NEXT_PAGE = 1
     }
 
 

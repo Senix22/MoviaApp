@@ -34,7 +34,7 @@ class TrailerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        movieId = arguments?.getLong("id") ?: 1232L
+        movieId = arguments?.getLong("movieId") ?: 0L
         getMovie(movieId.toString())
 
     }
@@ -60,7 +60,6 @@ class TrailerFragment : Fragment() {
                                     startTrailer(key)
                                 }
 
-                                //youtube https://www.youtube.com/watch?v= ++ KEY
                             }
                         }
 

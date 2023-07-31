@@ -5,7 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.moviaapp.common.State
 import com.example.moviaapp.data.MovieItem
 import com.example.moviaapp.data.movie.TrailerRepository
+import com.example.moviaapp.di.DispatcherIo
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,6 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TrailerViewModel @Inject constructor(
+    @DispatcherIo private val workDispatcher: CoroutineDispatcher,
     private val movieItem: TrailerRepository
 ) : ViewModel() {
 
@@ -30,10 +33,11 @@ class TrailerViewModel @Inject constructor(
     fun getMovieItem(id: String) {
         viewModelScope.launch {
             movieItem.getMovieId(id)
+                .flowOn(workDispatcher)
                 .map {
                     it
                 }
-                .flowOn(Dispatchers.IO)
+
                 .collect {
                     mutableStateFlow.value = State.Content(it)
                 }

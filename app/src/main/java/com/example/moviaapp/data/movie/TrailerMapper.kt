@@ -42,40 +42,6 @@ class TrailerMapper @Inject constructor() {
                 null
             ))
         }
-//        return movieResponse.results?.map {
-//            it.asMovieItem()
-//        } ?: emptyList()
     }
-//    fun movieItemMapper(resultResponse: NetworkResponse<MovieItemResponse, Any>): MovieItem {
-//        return when (resultResponse) {
-//            is NetworkResponse.Success -> {
-//                with(resultResponse.body) {
-//                    MovieItemResult.Success(
-//                        result = results?.map {
-//                            it.asMovieItem()
-//                        } ?: emptyList()
-//                    )
-//                }
-//            }
-//
-//            is NetworkResponse.ApiError -> {
-//                MovieItemResult.Failure(
-//                    resultResponse.body.toString(),
-//                    resultResponse.code
-//                )
-//
-//            }
-//
-//            is NetworkResponse.NetworkError -> MovieItemResult.Failure(
-//                resultResponse.error.message.orEmpty(),
-//                null
-//            )
-//
-//            is NetworkResponse.UnknownError -> (MovieItemResult.Failure(
-//                resultResponse.error.message.orEmpty(),
-//                null
-//            ))
-//        }
-//    }
 
 }

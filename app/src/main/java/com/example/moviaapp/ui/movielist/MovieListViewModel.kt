@@ -32,9 +32,6 @@ class MovieListViewModel @Inject constructor(
     private val _movieList = MutableStateFlow<PagingData<MovieEntity>?>(null)
     val movieList: Flow<PagingData<MovieEntity>> = _movieList
         .filterNotNull()
-        .onEach {
-            _state.value = State.Content(Any())
-        }
 
 
     init {

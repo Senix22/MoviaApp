@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 class TrailerFragment : Fragment() {
     private val movieViewModel: TrailerViewModel by viewModels()
     private lateinit var binding: TrailerFragmentBinding
-    var movieId = 0L
+    private var movieId = 0L
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -48,7 +48,7 @@ class TrailerFragment : Fragment() {
                     is State.Content -> {
                         when (uiState.data) {
                             is MovieItemResult.Failure -> {
-                                println()
+                                Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
                             }
 
                             is MovieItemResult.Success -> {

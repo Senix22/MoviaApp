@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName
 data class MovieDetailResponse(
     @SerializedName("adult") val adult: Boolean?,
     @SerializedName("backdrop_path") val backdropPath: String?,
-    @SerializedName("belongs_to_collection") val belongsToCollection: String?,
     @SerializedName("budget") val budget: Int?,
     @SerializedName("genres") val genres: List<MovieGenres>?,
     @SerializedName("homepage") val homepage: String?,
@@ -52,4 +51,11 @@ data class SpokenLanguages(
     @SerializedName("english_name") val englishName: String?,
     @SerializedName("iso_639_1") val iso: String?,
     @SerializedName("name") val name: String?,
+)
+
+data class BelongToCollection(
+    @SerializedName("id")val id: Int?,
+    @SerializedName("name")val name: String?,
+    @SerializedName("poster_path")val posterPath: String?,
+    @SerializedName("backdrop_path")val backdropPath: String?,
 )

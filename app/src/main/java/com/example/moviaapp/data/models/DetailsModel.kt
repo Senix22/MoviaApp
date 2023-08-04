@@ -19,7 +19,7 @@ sealed class MovieDetailsResult<out T> {
 data class MovieDetailEntity(
     val adult: Boolean?,
     val backdropPath: String?,
-    val belongsToCollection: String?,
+    val belongsToCollection: List<BelongToCollectionEntity>?,
     val budget: Int?,
     val genres: List<MovieGenresEntity>?,
     val homepage: String?,
@@ -60,6 +60,13 @@ data class MovieProductionCompanyEntity(
 data class MovieProductionCountriesEntity(
     val iso: String?,
     val name: String?,
+)
+
+data class BelongToCollectionEntity(
+    val id: Int?,
+    val name: String?,
+    val posterPath: String?,
+    val backdropPath: String?,
 )
 
 data class SpokenLanguagesEntity(

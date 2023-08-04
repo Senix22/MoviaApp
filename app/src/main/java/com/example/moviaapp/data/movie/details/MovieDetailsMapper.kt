@@ -1,10 +1,12 @@
 package com.example.moviaapp.data.movie.details
 
+import com.example.moviaapp.data.api.BelongToCollection
 import com.example.moviaapp.data.api.MovieDetailResponse
 import com.example.moviaapp.data.api.MovieGenres
 import com.example.moviaapp.data.api.MovieProductionCompany
 import com.example.moviaapp.data.api.MovieProductionCountries
 import com.example.moviaapp.data.api.SpokenLanguages
+import com.example.moviaapp.data.models.BelongToCollectionEntity
 import com.example.moviaapp.data.models.MovieDetailEntity
 import com.example.moviaapp.data.models.MovieDetails
 import com.example.moviaapp.data.models.MovieDetailsResult
@@ -62,6 +64,11 @@ class MovieDetailsMapper @Inject constructor() {
                 it.toProductionCountry()
             }
         }
+//        val belongToCollection = belongsToCollection?.map {
+//            async {
+//                it.toCollection()
+//            }
+//        }
         val language = spokenLanguages?.map {
             async {
                 it.toSpokenLanguage()
@@ -70,7 +77,7 @@ class MovieDetailsMapper @Inject constructor() {
         MovieDetailEntity(
             adult = adult,
             backdropPath = backdropPath.orEmpty(),
-            belongsToCollection = belongsToCollection.orEmpty(),
+            belongsToCollection = emptyList(),
             budget = budget ?: 0,
             genres = genres?.awaitAll(),
             homepage = homepage.orEmpty(),
@@ -122,5 +129,13 @@ class MovieDetailsMapper @Inject constructor() {
             englishName = englishName.orEmpty(),
             iso = iso.orEmpty(),
             name = name.orEmpty()
+        )
+
+    private fun BelongToCollection.toCollection() =
+        BelongToCollectionEntity(
+            id = id,
+            name = name.orEmpty(),
+            posterPath = posterPath.orEmpty(),
+            backdropPath = backdropPath.orEmpty()
         )
 }

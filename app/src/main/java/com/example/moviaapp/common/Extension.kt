@@ -1,8 +1,8 @@
 package com.example.moviaapp.common
 
 import android.view.View
-import com.example.moviaapp.data.MovieEntity
-import com.example.moviaapp.data.MovieItemEntity
+import com.example.moviaapp.data.models.MovieEntity
+import com.example.moviaapp.data.models.TrailerEntity
 import com.example.moviaapp.data.api.MovieItemResultResponse
 import com.example.moviaapp.data.api.ResultResponse
 
@@ -17,7 +17,7 @@ fun ResultResponse.asMovie() = MovieEntity(
 
 )
 
-fun MovieItemResultResponse.asMovieItem() = MovieItemEntity(
+fun MovieItemResultResponse.asMovieItem() = TrailerEntity(
     iso = iso.orEmpty(),
     iso2 = iso2.orEmpty(),
     name = name.orEmpty(),

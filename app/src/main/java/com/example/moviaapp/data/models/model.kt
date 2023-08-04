@@ -1,7 +1,7 @@
-package com.example.moviaapp.data
+package com.example.moviaapp.data.models
 
 typealias UsualMovieResult = MovieResult<MovieEntity>
-typealias MovieItem = MovieItemResult<MovieItemEntity>
+typealias TrailerResult = MovieItemResult<TrailerEntity>
 
 sealed class MovieResult<out T> {
     data class Success<T>(
@@ -29,7 +29,7 @@ data class MovieEntity(
 
 sealed class MovieItemResult<out T> {
     data class Success<T>(
-        val result: List<MovieItemEntity>
+        val result: List<TrailerEntity>
     ) : MovieItemResult<T>()
 
     data class Failure<T>(
@@ -38,7 +38,7 @@ sealed class MovieItemResult<out T> {
     ) : MovieItemResult<T>()
 }
 
-data class MovieItemEntity(
+data class TrailerEntity(
     val iso: String,
     val iso2: String,
     val name: String,

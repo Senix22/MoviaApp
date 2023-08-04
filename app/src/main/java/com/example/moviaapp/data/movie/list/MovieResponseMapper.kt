@@ -1,10 +1,10 @@
-package com.example.moviaapp.data.movie
+package com.example.moviaapp.data.movie.list
 
 import com.example.moviaapp.common.asMovie
-import com.example.moviaapp.data.MovieEntity
-import com.example.moviaapp.data.MovieResult
+import com.example.moviaapp.data.models.MovieEntity
+import com.example.moviaapp.data.models.MovieResult
 
-import com.example.moviaapp.data.UsualMovieResult
+import com.example.moviaapp.data.models.UsualMovieResult
 import com.example.moviaapp.data.api.MovieResponse
 import com.example.moviaapp.network.NetworkResponse
 import javax.inject.Inject

@@ -1,7 +1,7 @@
-package com.example.moviaapp.data.movie
+package com.example.moviaapp.data.movie.list
 
-import com.example.moviaapp.data.MovieEntity
-import com.example.moviaapp.data.UsualMovieResult
+import com.example.moviaapp.data.models.MovieEntity
+import com.example.moviaapp.data.models.UsualMovieResult
 import com.example.moviaapp.data.api.MovieApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

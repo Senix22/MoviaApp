@@ -5,12 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.moviaapp.common.State
-import com.example.moviaapp.data.MovieItemResult
+import com.example.moviaapp.data.models.MovieItemResult
 import com.example.moviaapp.databinding.TrailerFragmentBinding
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
@@ -20,7 +24,7 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class TrailerFragment : Fragment() {
+class TrailerFragment : BottomSheetDialogFragment() {
     private val movieViewModel: TrailerViewModel by viewModels()
     private lateinit var binding: TrailerFragmentBinding
     private var movieId = 0L
@@ -37,6 +41,14 @@ class TrailerFragment : Fragment() {
         movieId = arguments?.getLong("movieId") ?: 0L
         getMovie(movieId.toString())
 
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+            // Handle the back button event
+            findNavController().popBackStack()
+        }
     }
 
 
@@ -56,7 +68,6 @@ class TrailerFragment : Fragment() {
                                     uiState.data.result.firstOrNull { it.name.contains("Trailer") }
 
                                 trailer?.apply {
-                                    binding.text.text = name
                                     startTrailer(key)
                                 }
 

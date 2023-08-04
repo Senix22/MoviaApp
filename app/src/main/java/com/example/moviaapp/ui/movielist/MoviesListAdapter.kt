@@ -2,11 +2,10 @@ package com.example.moviaapp.ui.movielist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
-import com.example.moviaapp.data.MovieEntity
+import com.example.moviaapp.data.models.MovieEntity
 import com.example.moviaapp.databinding.MovieItemBinding
 import com.example.moviaapp.ui.viewholder.MovieViewHolder
 
@@ -31,7 +30,7 @@ class MoviesListAdapter(var loadNextData: (position: Long) -> Unit) :
         with(holder.bind(item)) {
             Glide.with(holder.itemView.context)
                 .load("https://image.tmdb.org/t/p/w600_and_h900_bestv2${item?.backdropPath}")
-                .into(holder.binding.imageView)
+                .into(holder.binding.imageView2)
             holder.binding.imageView.setOnClickListener {
                 loadNextData(item?.id ?: 0L)
             }

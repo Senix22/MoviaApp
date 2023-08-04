@@ -22,8 +22,7 @@ interface MovieApi {
     ): NetworkResponse<MovieResponse, Any>
 
     @GET("movie/{movie_id}/videos")
-    suspend fun getMovieItem(
-
+    suspend fun getTrailer(
         @Path("movie_id") movieId: String,
         @Query("api_key") apiKey: String? = KEY,
     ): NetworkResponse<MovieItemResponse, Any>
@@ -33,4 +32,9 @@ interface MovieApi {
         @Query("api_key") apiKey: String? = KEY,
         @Query("query") query: String,
     ): NetworkResponse<MovieResponse, Any>
+    @GET("movie/{movie_id}")
+    suspend fun getMovieDetails(
+        @Path("movie_id") movieId: String,
+        @Query("api_key") apiKey: String? = KEY,
+    ): NetworkResponse<MovieDetailResponse, Any>
 }

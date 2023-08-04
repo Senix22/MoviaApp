@@ -11,15 +11,12 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviaapp.R
 import com.example.moviaapp.common.State
 import com.example.moviaapp.common.hide
 import com.example.moviaapp.common.show
-import com.example.moviaapp.data.MovieEntity
 import com.example.moviaapp.databinding.MovieListFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest

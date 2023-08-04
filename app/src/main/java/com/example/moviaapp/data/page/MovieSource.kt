@@ -4,9 +4,9 @@ import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.moviaapp.common.Taggable
-import com.example.moviaapp.data.MovieEntity
-import com.example.moviaapp.data.MovieResult
-import com.example.moviaapp.data.movie.MovieRepository
+import com.example.moviaapp.data.models.MovieEntity
+import com.example.moviaapp.data.models.MovieResult
+import com.example.moviaapp.data.movie.list.MovieRepository
 import javax.inject.Inject
 
 class MovieSource @Inject constructor(

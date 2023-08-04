@@ -1,8 +1,8 @@
-package com.example.moviaapp.data.movie
+package com.example.moviaapp.data.movie.trailer
 
 import com.example.moviaapp.common.asMovieItem
-import com.example.moviaapp.data.MovieItem
-import com.example.moviaapp.data.MovieItemResult
+import com.example.moviaapp.data.models.TrailerResult
+import com.example.moviaapp.data.models.MovieItemResult
 import com.example.moviaapp.data.api.MovieItemResponse
 
 import com.example.moviaapp.network.NetworkResponse
@@ -11,7 +11,7 @@ import javax.inject.Inject
 class TrailerMapper @Inject constructor() {
 
 
-    fun movieItemMapper(movieResponse: NetworkResponse<MovieItemResponse, Any>): MovieItem {
+    fun trailerMapper(movieResponse: NetworkResponse<MovieItemResponse, Any>): TrailerResult {
 
         return when (movieResponse) {
             is NetworkResponse.Success -> {

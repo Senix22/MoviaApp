@@ -7,15 +7,13 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.moviaapp.common.State
-import com.example.moviaapp.data.MovieEntity
-import com.example.moviaapp.data.movie.MovieRepository
+import com.example.moviaapp.data.models.MovieEntity
+import com.example.moviaapp.data.movie.list.MovieRepository
 
 import com.example.moviaapp.data.page.MovieSource
 import com.example.moviaapp.di.DispatcherIo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject

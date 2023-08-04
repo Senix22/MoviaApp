@@ -29,20 +29,12 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.5" />
 
-        <com.google.android.material.button.MaterialButton
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/play"
-            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_marginStart="4dp"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:insetLeft="4dp"
-            android:insetTop="4dp"
-            android:background="@android:color/transparent"
-            android:insetRight="0dp"
-            android:insetBottom="0dp"
-            android:paddingBottom="8dp"
-            app:icon="@drawable/ic_play"
-            app:iconPadding="0dp"
-            app:iconSize="24dp"
+            android:src="@drawable/youtube_play_ic"
             app:layout_constraintBottom_toTopOf="@id/rating"
             app:layout_constraintStart_toStartOf="parent"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Rounded" />
